@@ -123,8 +123,8 @@ tableView.addDataClickListener(new TableDataClickListener<Car>() {
 
 ```java
 tableView.addHeaderClickListener(columnIndex -> {
-    // Handle header click
-});
+        // Handle header click
+        });
 ```
 
 ### Endless Scroll
