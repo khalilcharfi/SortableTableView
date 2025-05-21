@@ -1,144 +1,168 @@
-# SortableTableView - Pro Features
+# SortableTableView for Android (Fork)
 
-This module adds the following pro features to the SortableTableView library:
+> **A modern, powerful Android TableView library for displaying and interacting with structured data in a grid layout.**
 
-## Pro Features
+---
 
-1. **Search Functionality**: Filter table data based on search criteria
-2. **Pagination**: Navigate through table data page by page
-3. **Selection**: Select and highlight specific rows
+## 🚀 Overview
 
-## Usage
+This is a fork of the SortableTableView library originally developed by [Ingo Schwarz (@ISchwarz23)](https://github.com/ISchwarz23). Massive thanks and full credit to Ingo for the original implementation—a clean, modular table solution for Android that's still better than most bloated modern replacements.
 
-### Search Functionality
+This fork incorporates and refines additional features, bug fixes, and improved maintainability.
 
-The search feature allows you to filter table content based on search criteria.
+---
+
+## 📦 Modules
+
+| Module    | Description                                      |
+|-----------|--------------------------------------------------|
+| `tableview` | Library source and updated features. See below.   |
+| `app`       | Sample app demonstrating setup and features.      |
+
+---
+
+## 🛠️ Setup
+
+### 1. Add JitPack to your root `build.gradle`:
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+### 2. Add the Dependency
+
+```groovy
+dependencies {
+    implementation 'com.github.ISchwarz23:SortableTableView:2.8.1' // Update to your fork if needed
+}
+```
+
+---
+
+## ✨ Features
+
+| Feature            | Status      | Notes                |
+|--------------------|-------------|----------------------|
+| Searching          | ✅ Implemented |
+| Paging             | ✅ Implemented |
+| Row Selection      | ✅ Implemented |
+| View Recycling     | ✅ Supported   |
+| Scroll Listener    | ✅ Enhanced    |
+
+*Details for each are provided below and in the demo app.*
+
+---
+
+## 🏗️ Core Features (Original + Enhanced)
+
+### Layout and Column Config
+
+**XML Example:**
+
+```xml
+<de.codecrafters.tableview.TableView
+    android:id="@+id/tableView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    table:tableView_columnCount="4" />
+```
+
+**Programmatically:**
 
 ```java
-// Create a SearchableTableDataAdapter
-SearchableTableDataAdapter<Car> adapter = new SearchableTableDataAdapter<Car>(context, carList) {
+tableView.setColumnCount(4);
+```
+
+**Set column widths via:**
+- Weight: `TableColumnWeightModel`
+- DP: `TableColumnDpWidthModel`
+- PX: `TableColumnPxWidthModel`
+
+### Data Adapters
+- Use `SimpleTableDataAdapter` for 2D string arrays.
+- Extend `TableDataAdapter<T>` for custom objects.
+
+### Sorting
+
+Use `SortableTableView` and assign comparators per column:
+
+```java
+sortableTableView.setColumnComparator(0, new CarProducerComparator());
+```
+
+### Empty Data Indicator
+
+```java
+tableView.setEmptyDataIndicatorView(findViewById(R.id.empty_data_indicator));
+```
+
+### Header Adapter
+- Use `SimpleTableHeaderAdapter` for static strings or resource-based headers.
+
+---
+
+## ⚡ Event Listeners
+
+### Row Clicks
+
+```java
+tableView.addDataClickListener(new TableDataClickListener<Car>() {
     @Override
-    public View getCellView(int rowIndex, int columnIndex, ViewGroup parentView) {
-        // Your cell view implementation
+    public void onDataClicked(int rowIndex, Car car) {
+        // Handle click
     }
-};
-
-// Create a search predicate that defines how to match items
-TableSearch.SearchPredicate<Car> searchPredicate = (car, query) -> 
-    car.getName().toLowerCase().contains(query.toLowerCase()) || 
-    car.getProducer().getName().toLowerCase().contains(query.toLowerCase());
-
-// Set up search
-SimpleTableSearch<Car> tableSearch = new SimpleTableSearch<>(searchPredicate);
-adapter.setTableSearch(tableSearch);
-
-// To perform a search:
-adapter.search("Toyota");
-
-// To clear the search:
-adapter.clearSearch();
+});
 ```
 
-### Pagination
-
-The pagination feature allows you to display table data in pages, improving performance and user experience.
+### Header Clicks
 
 ```java
-// Create a PaginatedTableDataAdapter with page size of 10
-PaginatedTableDataAdapter<Car> adapter = new PaginatedTableDataAdapter<Car>(context, carList, 10) {
+tableView.addHeaderClickListener(columnIndex -> {
+    // Handle header click
+});
+```
+
+### Endless Scroll
+
+Use `EndlessOnScrollListener` for auto-loading:
+
+```java
+tableView.addOnScrollListener(new EndlessOnScrollListener() {
     @Override
-    public View getCellView(int rowIndex, int columnIndex, ViewGroup parentView) {
-        // Your cell view implementation
-    }
-};
-
-// Set a pagination listener to be notified of pagination changes
-adapter.setPaginationListener((currentPage, totalPages, pageSize, totalItems) -> {
-    // Update pagination UI (e.g., page indicators)
-    pageInfoTextView.setText(String.format("Page %d of %d", currentPage + 1, totalPages));
-    prevButton.setEnabled(adapter.hasPreviousPage());
-    nextButton.setEnabled(adapter.hasNextPage());
-});
-
-// Navigation methods
-adapter.nextPage();
-adapter.previousPage();
-adapter.goToPage(2); // Go to page 3 (0-based indexing)
-adapter.firstPage();
-adapter.lastPage();
-
-// Change page size
-adapter.setPageSize(20);
-```
-
-### Selection
-
-The selection feature allows users to select and highlight rows in the table.
-
-```java
-// Create a TableSelectionManager for single selection
-TableSelectionManager<Car> selectionManager = new TableSelectionManager<>(
-    tableView,                 // Your TableView instance
-    getResources().getColor(R.color.selected_row_background),  // Highlight color
-    TableSelectionManager.SelectionMode.SINGLE  // Selection mode (SINGLE or MULTIPLE)
-);
-
-// Add a selection listener
-selectionManager.addSelectionListener((selectedRowIndices, selectedItems) -> {
-    // Handle selection changes
-    if (!selectedItems.isEmpty()) {
-        Car selectedCar = selectedItems.get(0);
-        Toast.makeText(context, "Selected: " + selectedCar.getName(), Toast.LENGTH_SHORT).show();
+    public void onReloadingTriggered(int first, int visible, int total) {
+        // Load data
     }
 });
-
-// Selection methods
-selectionManager.selectRow(5);
-selectionManager.deselectRow(5);
-selectionManager.toggleSelection(5);
-selectionManager.clearSelection();
-
-// For multiple selection mode
-selectionManager.selectAll(); // Select all rows (only works in MULTIPLE mode)
-
-// Change selection mode dynamically
-selectionManager.setSelectionMode(TableSelectionManager.SelectionMode.MULTIPLE);
 ```
 
-### All-in-One Solution: ProTableDataAdapter
+---
 
-For convenience, you can use the `ProTableDataAdapter` which combines all pro features:
+## 🎨 Styling
 
-```java
-// Create a ProTableDataAdapter with page size of 10
-ProTableDataAdapter<Car> adapter = new ProTableDataAdapter<Car>(context, carList, 10) {
-    @Override
-    public View getCellView(int rowIndex, int columnIndex, ViewGroup parentView) {
-        // Your cell view implementation
-    }
-};
+- Header color, font, padding, and full theming customization supported via styles or code.
 
-// Set up search
-TableSearch.SearchPredicate<Car> searchPredicate = (car, query) -> 
-    car.getName().toLowerCase().contains(query.toLowerCase());
-adapter.setTableSearch(new SimpleTableSearch<>(searchPredicate));
+---
 
-// Set up pagination listener
-adapter.setPaginationListener((currentPage, totalPages, pageSize, totalItems) -> {
-    // Update pagination UI
-});
+## 🙏 Credits & Final Notes
 
-// Set the adapter to your TableView
-tableView.setDataAdapter(adapter);
+**Original Author:**
+All foundational work and initial architecture come from Ingo Schwarz. This fork would not exist without his well-architected baseline. Sincere thanks to him for making this available to the developer community.
 
-// Create a selection manager through the adapter
-TableSelectionManager<Car> selectionManager = adapter.createSelectionManager(
-    tableView, 
-    getResources().getColor(R.color.selected_row_background),
-    TableSelectionManager.SelectionMode.MULTIPLE
-);
-```
+This fork just builds on his efforts to keep the project alive, accessible, and evolving. If you want the bare metal, stick to the original. If you want power features built-in without a paywall or abandonware risk, this is it.
 
-## License
+---
 
-Copyright 2023. Licensed under the Apache License, Version 2.0. 
+## 📄 License
+
+Copyright 2015 Ingo Schwarz
+
+Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+You may not use this file except in compliance with the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the [LICENSE.txt](../LICENSE.txt) file for more details.
