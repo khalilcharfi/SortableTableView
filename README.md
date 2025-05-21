@@ -1,16 +1,21 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SortableTableView-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2200) [![API](https://img.shields.io/badge/API-11%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=11) [![Build Status](https://travis-ci.org/ISchwarz23/SortableTableView.svg?branch=master)](https://travis-ci.org/ISchwarz23/SortableTableView)  
-# SortableTableView for Android
+# SortableTableView for Android (Fork)
+
+This is a forked version of the original [SortableTableView](https://github.com/ISchwarz23/SortableTableView) library by Ingo Schwarz (ISchwarz23). We extend our sincere gratitude to Ingo for creating this excellent library.
+
+This fork aims to integrate and enhance the "Pro" features mentioned in the original README, making them available as part of the open-source project. 
+
 An Android library providing a TableView and a SortableTableView. 
 
 ![SortableTableView Example](https://raw.githubusercontent.com/ISchwarz23/SortableTableView/develop/README/SortableTableView-Example.gif)
 
-**Minimum SDK-Version:** 11  |  **Compile SDK-Version:** 25  |  **Latest Library Version:** 2.8.0  
+**Minimum SDK-Version:** 11  |  **Compile SDK-Version:** 35  |  **Latest Library Version:** 2.8.1 (Forked with Pro Features)  
 
 **New version available!** Check [version 3.1.0](http://www.sortabletableview.com) of the pro version.
 
 ## Repository Content
-**tableview** - contains the android library sources and resources  
-**app** - contains an example application showing how to use the SortableTableView  
+**tableview** - contains the android library sources and resources, including the newly added Pro features. See `tableview/README.md` for details on these features.
+**app** - contains an example application showing how to use the SortableTableView and the new Pro features.
 
 [![Example App](http://www.clintonfitch.com/wp-content/uploads/2015/06/Google-Play-Button.jpg)](https://play.google.com/store/apps/details?id=de.codecrafters.tableviewexample)
 
@@ -24,63 +29,33 @@ Add it in your root build.gradle at the end of repositories:
         }
     }
 ```
-Then add the dependency:
+Then add the dependency (ensure you are using the correct fork information if published separately):
 ```
     dependencies {
         ...
-        implementation 'com.github.ISchwarz23:SortableTableView:2.8.1'
+        implementation 'com.github.ISchwarz23:SortableTableView:2.8.1' // Or your fork's coordinates
         ...
     }
 ```
 
-## Pro Version
-If you want to have the best TableView experience, we offer you the possibility to get the [pro version](http://www.sortabletableview.com) 
-of the SortableTableView. This is what the pro version offers you:
+## Implemented Pro Features (Fork)
 
-| | Open-Source Version | Pro Version |
-| --- | --- | --- |
-| render simple data | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| render custom data | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| header styling | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| data row styling | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| data sorting | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| data loading | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| searching | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| paging | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| selection | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| view recycling | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| support | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| maintenance | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| quick start guide | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
-| full documentation | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/cross-mark_274c.png" height="24"> | <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/heavy-check-mark_2714.png" height="24"> |
+This fork has implemented the following features, previously described as "Pro" in the original README:
 
-To get more information visit the [SortableTableView-Page](http://www.sortabletableview.com).
+| Feature         | Status in this Fork |
+|-----------------|---------------------|
+| Searching       | Implemented         |
+| Paging          | Implemented         |
+| Selection       | Implemented         |
+| View Recycling  | (Inherited)         |
+| Support         | (Community)         |
+| Maintenance     | (Community)         |
+| Quick Start Guide | (See `tableview/README.md` and example app) |
+| Full Documentation| (See `tableview/README.md` and example app) |
 
-<!---
-## Support the open-source version
-As the open-source version brings a lot of work to maintain, you can support me with a small donation in order
-to keep the free version alive.
+For detailed usage of these features, please refer to the `tableview/README.md` file within the `tableview` module and the example application in the `app` module.
 
-*"Thank's for creating this project, here's a coffee (or some beer) for you!"*  
-[Donate 5$](https://www.paypal.me/ISchwarz23/5USD) or  [Donate 5€](https://www.paypal.me/ISchwarz23/5EUR)
-
-*"Wow, I am stunned. Let me take you to the movies!"*  
-[Donate 10$](https://www.paypal.me/ISchwarz23/10USD) or  [Donate 10€](https://www.paypal.me/ISchwarz23/10EUR)
-
-*"I really appreciate your work, let's grab some lunch!"*  
-[Donate 15$](https://www.paypal.me/ISchwarz23/15USD) or  [Donate 15€](https://www.paypal.me/ISchwarz23/15EUR)
-
-*"That's some awesome stuff you did right there, dinner is on me!"*  
-[Donate 25$](https://www.paypal.me/ISchwarz23/25USD) or  [Donate 25€](https://www.paypal.me/ISchwarz23/25EUR)
-
-*"I really really want to support this project, great job!"*  
-[Donate 50$](https://www.paypal.me/ISchwarz23/50USD) or  [Donate 50€](https://www.paypal.me/ISchwarz23/50EUR)
-
-*"You are the man! This project saved me hours (if not days) of struggle and hard work, simply awesome!"*  
-[Donate 100$](https://www.paypal.me/ISchwarz23/100USD) or  [Donate 100€](https://www.paypal.me/ISchwarz23/100EUR)
---->
-  
-## Features
+## Features (Original)
 ### Layouting
 #### Column Count
 The provided TableView is very easy to adapt to your needs. To set the column count simple set the parameter inside your XML layout.  
@@ -368,162 +343,4 @@ private class MyEndlessOnScrollListener extends EndlessOnScrollListener {
 ### Styling
 #### Header Styling
 The table view provides several possibilities to style its header. One possibility is to set a **color** for the header. Therefore you can adapt the XML file or add it to your code.
-```xml
-<de.codecrafters.tableview.TableView
-    xmlns:table="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/tableView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    table:tableView_headerColor="@color/primary" />
 ```
-```java
-tableView.setHeaderBackgroundColor(getResources().getColor(R.color.primary));
-```
-For more complex header styles you can also set a **drawable** as header background using the following method.
-```java
-tableView.setHeaderBackground(R.drawable.linear_gradient);
-```
-In addition you can set an **elevation** of the table header. To achieve this you have the possibility to set the elevation in XML or alternatively set it in your code. 
-```xml
-<de.codecrafters.tableview.TableView
-    xmlns:table="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/tableView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    table:tableView_headerElevation="10" />
-```
-```java
-tableView.setHeaderElevation(10);
-```
-**NOTE:** *This elevation is realized with the app-compat version of elevation. So it is also applicable on pre-lollipop devices*
-  
-For SortableTableViews it is also possible to replace the default **sortable indicator icons** by your custom ones. To do so you need to implement the `SortStateViewProvider` and set it to your `SortableTableView`.
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-	setContentView(R.layout.activity_main);
-    // ...
-    sortableTableView.setHeaderSortStateViewProvider(new MySortStateViewProvider());
-}
-
-private static class MySortStateViewProvider implements SortStateViewProvider {
-
-    private static final int NO_IMAGE_RES = -1;
-
-    @Override
-    public int getSortStateViewResource(SortState state) {
-        switch (state) {
-            case SORTABLE:
-                return R.mipmap.ic_sortable;
-            case SORTED_ASC:
-                return R.mipmap.ic_sorted_asc;
-            case SORTED_DESC:
-                return R.mipmap.ic_sorted_desc;
-            default:
-                return NO_IMAGE_RES;
-        }
-    }
-}
-```
-There is also a factory class existing called `SortStateViewProviders` where you can get some predefined implementations of the `SortStateViewProvider`.
-
-#### Data Row Styling
-In general you can do all your styling of data content in your custom `TableDataAdapter`. But if you want to add a background for the whole table rows you can use the `TableDataRowBackgroundProvider`. There are already some implementations of the `TableDataRowBackgroundProvider` existing in the library. You can get them by using the Factory class `TableDataRowBackgroundProviders`.  
-This Factory contains for example an alternating-table-data-row-row provider that will color rows with even index different from rows with odd index.
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    // ...
-    int colorEvenRows = getResources().getColor(R.color.white);
-    int colorOddRows = getResources().getColor(R.color.gray);
-    tableView.setDataRowBackgroundProvider(TableDataRowBackgroundProviders.alternatingRowColors(colorEvenRows, colorOddRows));
-}
-```
-If the implementations of `TableDataRowBackgroundProvider` contained in the `TableDataRowBackgroundProviders` factory don't fulfil you needs you can create your own implementation of `TableDataRowBackgroundProvider`. Here is a small example of how to do so.
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    // ...
-    tableView.setDataRowBackgroundProvider(new CarPriceRowColorProvider());
-}
-    
-private static class CarPriceRowColorProvider implements TableDataRowBackgroundProviders<Car> {
-    @Override
-    public Drawable getRowBackground(final int rowIndex, final Car car) {
-        int rowColor = getResources(R.color.white);
-            
-        if(car.getPrice() < 50000) {
-            rowColor = getResources(R.color.light_green);
-        } else if(car.getPrice() > 100000) {
-            rowColor = getResources(R.color.light_red);
-        }
-                
-        return new ColorDrawable(rowColor);
-    }
-}
-```
-This background provider will set the background color of each row corresponding to the price of the car that is displayed at in this row. Cheap cars (less then 50,000) get a green background, expensive cars (more then 100,000) get a red background and all other cars get a white background.
-  
-#### Seperator Styling  
-If you want to have a seperator between the data rows you can do so by specifying it in the XML like known from the `ListView`.
-```java
-<de.codecrafters.tableview.TableView
-    android:id="@+id/tableView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:divider="@color/black"
-    android:dividerHeight="1dip"
-    ...  /> 
-```
-As for the `ListView` you can specify `divider` as a drawable and `dividerHeight` as the vertical size of the divider.  
-  
-### Swipe to Refresh
-The TableView has a build in SwipeToRefresh action. By default this is disabled, but you can easily enable it using the follwing line.
-```java
-tableView.setSwipeToRefreshEnabled( true );
-```
-This enables the user to trigger the table refresh on a single swipe. To listen for this user interaction you have to set an `SwipeToRefreshListener` to your tableview.
-```java
-carTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
-    @Override
-    public void onRefresh(final RefreshIndicator refreshIndicator) {
-        // your async refresh action goes here
-    }
-});
-```
-The callback method has the `RefreshIndicator` that is shown to the user passed as parameter. So if you finished your refresh action simply call `RefreshIndicator.hide()`.
-  
-### Hide Table Header
-To hide the header of the TableView just call the `setHeaderVisible( false )` method. You can do this also with animation calling `setHeaderVisibile( false, 1000 )` where the second parameter is the duration of the animation.
-To make the header visible again just call `setHeaderVisible( true )` or `setHeaderVisible( true, 1000 )`.
-
-#### Hide/Show Table Header on Scroll
-To hide an show the table header when the user is scrolling, just use the `TableHeaderCollapseOnScrollListener`.
-```java
-carTableView.setOnScrollListener(new TableHeaderCollapseOnScrollListener( carTableView ));
-```
-By default the `TableHeaderCollapseOnScrollListener` will hide the header, when the user scrolls two rows to the bottom or shows it again when scrolling two rows to top.
-To change this you can call `TableHeaderCollapseOnScrollListener#setRowOffset( int )` with your preferred offset.
-To enable animation you can call `TableHeaderCollapseOnScrollListener#setAnimationDuration( int )` with your preferred animation duration.
-  
-### State Persistence
-The TableView as well as the SortableTableView will persist its state automatically (e.g. on orientation change). If you want to disable this behaviour you can do so using the following code snipped.
-```java
-tableView.setSaveEnabled( false );
-```  
-  
-## License
-*Copyright 2015 Ingo Schwarz*  
-  
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-```
-http://www.apache.org/licenses/LICENSE-2.0
-```
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
