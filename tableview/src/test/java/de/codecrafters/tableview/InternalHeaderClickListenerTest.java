@@ -33,7 +33,7 @@ public class InternalHeaderClickListenerTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
 
         listeners.add(firstListenerMock);
         cut = new InternalHeaderClickListener(TEST_ROW_INDEX, listeners);

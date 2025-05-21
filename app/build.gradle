@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdk 35
 
     defaultConfig {
         applicationId "de.codecrafters.tableviewexample"
-        minSdkVersion 11
-        targetSdkVersion 25
+        minSdk 21
+        targetSdk 35
         versionCode 16
         versionName "2.8.0"
     }
@@ -17,14 +16,47 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
+    namespace "de.codecrafters.tableviewexample"
+    lint {
         abortOnError false
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    
+    // For Java 8 compatibility
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Force a consistent Kotlin version
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+        // Force androidx swiperefreshlayout version
+        force 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:support-compat:25.4.0'
+    // AndroidX Core
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    
+    // SwipeRefreshLayout - added with specific group and artifact ID
+    implementation('androidx.swiperefreshlayout:swiperefreshlayout:1.1.0') {
+        transitive = true
+    }
 
-    compile project(':tableview')
+    implementation project(':tableview')
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }

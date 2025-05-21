@@ -28,14 +28,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdk 35
 
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 25
-        versionCode 17
-        versionName tableViewLibraryVersion
+        minSdk 21
+        targetSdk 35
     }
     buildTypes {
         release {
@@ -43,21 +40,53 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
+    namespace "de.codecrafters.tableview"
+    lint {
         abortOnError false
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    
+    // For Java 8 compatibility
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Force a consistent Kotlin version
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+        // Force androidx swiperefreshlayout version
+        force 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:support-compat:25.4.0'
+    // AndroidX Core
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    
+    // SwipeRefreshLayout - added with specific group and artifact ID
+    implementation('androidx.swiperefreshlayout:swiperefreshlayout:1.1.0') {
+        transitive = true
+    }
+    
+    implementation 'androidx.annotation:annotation:1.7.0'
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.13.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
+    testImplementation 'org.mockito:mockito-inline:4.11.0'
 }
 
 // For releasing do a "gradlew install" followed by a "gradlew bintrayUpload"
 if (project.rootProject.file('local.properties').exists()) {
-    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+    // Commenting out bintray since it's now deprecated
+    // apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+    // apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
 }
